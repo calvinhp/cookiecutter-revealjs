@@ -4,7 +4,13 @@
 
 ## Build this Presentation
 
-You will need to have `nvm` installed so you can ensure you are using the LTS version of Node.
+### Build depenancies
+
+- nvm
+- pandoc
+- bsdtar (part of the `libarchive-tools` package on Ubuntu)
+
+Make sure that your working directory is setup to use the LTS version of node before you begin. Then can just build your presentation with `make`.
 
 ```
 $ nvm install --lts
