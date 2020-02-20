@@ -1,7 +1,7 @@
 {
     "presentation_title": "Presentation Title",
     "event_name": "Conf Name",
-    "event_year": "2019",
+    "event_year": "2020",
     "presentation_slug": "{{ cookiecutter.event_year }}_{{ cookiecutter.event_name|replace(' ', '')|trim() }}_{{ cookiecutter.presentation_title|replace(' ', '')|trim() }}",
     "author": "Calvin Hendryx-Parker",
     "author_title": "CTO",
