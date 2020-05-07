@@ -14,5 +14,5 @@ Make sure that your working directory is setup to use the LTS version of node be
 
 ```
 $ nvm install --lts
-$ make index.html
+$ make start
 ```
