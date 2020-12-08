@@ -2,6 +2,8 @@
 
 ## Usage
 
+Make sure you have the `git-lfs` extension installed as this repo depends on it when Cookiecutter uses it.
+
 Install [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/index.html) via `pipx`.
 
 ```console
@@ -30,7 +32,7 @@ $ git init
 $ git add .
 $ git commit -m "first awesome commit"
 $ git remote add origin git@github.com:calvinhp/my_awesome_presentation.git
-$ git push -u origin master
+$ git push -u origin main
 ```
 
 Enjoy!
