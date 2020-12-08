@@ -1,6 +1,6 @@
 slide-theme := minions_white
 
-index.html: slides.md js/reveal.js css/theme/$(slide-theme).css ## build presentation and theme
+index.html: slides.md js/reveal.js dist/theme/$(slide-theme).css ## build presentation and theme
 	pandoc -t revealjs -s -V revealjs-url=. \
 		-V theme=$(slide-theme) \
 		-V width=1200 \
@@ -17,7 +17,7 @@ js/reveal.js:
 css/theme/source/$(slide-theme).scss: themes/$(slide-theme).scss
 	cp "$<" "$@"
 
-css/theme/$(slide-theme).css: css/theme/source/$(slide-theme).scss
+dist/theme/$(slide-theme).css: css/theme/source/$(slide-theme).scss
 	node_modules/node-sass/bin/node-sass "$<" > "$@"
 
 start: index.html ## bulid presentation and start server
@@ -37,6 +37,7 @@ clean: ## clean up the working directory
 	rm -rf plugin/ || true
 	rm -rf test/ || true
 	rm -rf node_modules/ || true
+	rm -rf dist/ || true
 
 help: ## This help.
 	@awk 'BEGIN 	{ FS = ":.*##"; target="";printf "\nUsage:\n  make \033[36m<target>\033[33m\n\nTargets:\033[0m\n" } \
@@ -46,4 +47,4 @@ help: ## This help.
 		/^## .*/ {match($$0, "## (.+)$$"); txt=substr($$0,4,RLENGTH);printf "\n\033[33m%s\033[0m\n", txt ; target=""} \
 	' $(MAKEFILE_LIST)
 
-.PHONY: help clean start index.html
+.PHONY: help clean start
