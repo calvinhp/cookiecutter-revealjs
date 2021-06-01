@@ -18,7 +18,7 @@ css/theme/source/$(slide-theme).scss: themes/$(slide-theme).scss
 	cp "$<" "$@"
 
 dist/theme/$(slide-theme).css: css/theme/source/$(slide-theme).scss
-	node_modules/node-sass/bin/node-sass "$<" > "$@"
+	npm run build -- css-themes
 
 start: index.html ## bulid presentation and start server
 	npm start
