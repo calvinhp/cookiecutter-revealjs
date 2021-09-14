@@ -6,6 +6,7 @@ index.html: slides.md js/reveal.js dist/theme/$(slide-theme).css ## build presen
 		-V width=1200 \
 		-V center=false \
 		-V autoPlayMedia=false \
+		-V hash=true \
 		-o "$@" "$<"
 
 js/reveal.js:
