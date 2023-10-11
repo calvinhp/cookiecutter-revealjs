@@ -89,23 +89,27 @@ section.has-dark-background {
     margin-right: 0;
 }
 
-.reveal ul {
-  list-style-type: none !important; }
+.reveal ul { list-style-type: none !important; }
+
+.reveal ol li {
+  margin-left: 60px;
+  margin-right: 20px;
+}
 
 .reveal ul li:before {
     content: '»';
     font-size: 1.2em;
     font-weight: bold;
-    margin-left: -36px;
+    margin-left: 30px;
     margin-right: 20px;
 }
 
 body:after {
-  content: url(/images/logo.png);
-  transform: scale(.1);
+  content: url(../../images/logo.png);
+  transform: scale(.2);
   position: fixed;
-  bottom: -17em;
-  left: -54em;
+  bottom: -14em;
+  left: -26em;
 }
 
 // Theme template ------------------------------
