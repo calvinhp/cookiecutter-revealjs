@@ -25,7 +25,9 @@ jobs:
   deploy:
     environment:
       name: github-pages
+      {% raw %}
       url: ${{ steps.deployment.outputs.page_url }}
+      {% endraw %}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
