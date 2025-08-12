@@ -1,4 +1,4 @@
-slide-theme := minions_white
+slide-theme := wildclouds
 
 index.html: slides.md js/reveal.js dist/theme/$(slide-theme).css ## build presentation and theme
 	pandoc -t revealjs -s -V revealjs-url=. \

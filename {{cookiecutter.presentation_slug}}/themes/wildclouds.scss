@@ -50,12 +50,38 @@ $linkColor: $blue;
 $linkColorHover: lighten( $linkColor, 20% );
 $selectionBackgroundColor: $magenta;
 
+$heading1Size: 2.3em;
+$heading2Size: 1.7em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
 .slide-background {
     filter: grayscale(50%) opacity(20%) blur(2px);
 
     &.original {
         filter: none;
     }
+}
+
+.reveal img.r-center {
+  display: block;
+  margin: 0 auto;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal ul li {
+  line-height: 1.5em;
+}
+
+body:after {
+  content: url(../../images/logo_reversed.png);
+  transform: scale(.3);
+  position: fixed;
+  bottom: -9em;
+  left: -7em;
 }
 
 
