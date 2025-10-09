@@ -42,7 +42,7 @@ jobs:
           && sudo -E apt-get update \
           && sudo -E apt-get install --no-install-recommends -y libarchive-tools \
           && TEMP_DEB="$(mktemp)" \
-          && wget -O "$TEMP_DEB" 'https://github.com/jgm/pandoc/releases/download/3.7.0.2/pandoc-3.7.0.2-1-amd64.deb' \
+          && wget -O "$TEMP_DEB" 'https://github.com/jgm/pandoc/releases/download/3.8.2/pandoc-3.8.2-1-amd64.deb' \
           && sudo dpkg -i "$TEMP_DEB"
       - name: Build index
         run: make index.html
