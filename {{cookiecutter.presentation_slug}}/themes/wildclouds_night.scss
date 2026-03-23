@@ -4,29 +4,34 @@
  * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
 
+// Load utils
+@use 'sass:color';
+@use 'template/mixins' as mixins;
 
-// Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
-// ---------------------------------------------
+$active-color: #e7ad52;
 
+// Inject theme variables (with some overrides)
+@use 'template/settings' with (
+  $background-color: #111,
+
+  $main-font: "'Open Sans', sans-serif",
+
+  $heading-font: "'Montserrat', Impact, sans-serif",
+  $heading-text-shadow: none,
+  $heading-letter-spacing: -0.03em,
+  $heading-text-transform: none,
+
+  $link-color: $active-color,
+  $link-color-hover: color.scale($active-color, $lightness: 20%),
+  $selection-background-color: $active-color
+);
+
+// Inject the theme template
+@use 'template/theme';
 
 // Include theme-specific fonts
 @import url(https://fonts.googleapis.com/css?family=Montserrat:700);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
-
-
-// Override theme settings (see ../template/settings.scss)
-$backgroundColor: #111;
-
-$mainFont: 'Open Sans', sans-serif;
-$linkColor: #e7ad52;
-$linkColorHover: lighten( $linkColor, 20% );
-$headingFont: 'Montserrat', Impact, sans-serif;
-$headingTextShadow: none;
-$headingLetterSpacing: -0.03em;
-$headingTextTransform: none;
-$selectionBackgroundColor: #e7ad52;
 
 .slide-background {
     filter: grayscale(50%) opacity(20%) blur(0px);
@@ -48,8 +53,3 @@ $selectionBackgroundColor: #e7ad52;
         padding-right: 12px;
     }
 }
-
-
-// Theme template ------------------------------
-@import "../template/theme";
-// ---------------------------------------------

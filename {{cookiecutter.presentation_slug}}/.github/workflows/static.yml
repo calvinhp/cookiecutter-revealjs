@@ -1,3 +1,4 @@
+{% raw %}
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy Reveal.js Presentation Content to Pages
 
@@ -25,9 +26,9 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      {% raw %}
+
       url: ${{ steps.deployment.outputs.page_url }}
-      {% endraw %}
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -54,9 +55,10 @@ jobs:
           mv dist/ _site/
           mv plugin/ _site/
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+{% endraw %}

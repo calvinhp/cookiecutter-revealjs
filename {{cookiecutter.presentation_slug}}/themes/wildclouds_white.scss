@@ -4,43 +4,46 @@
  * By Hakim El Hattab, http://hakim.se
  */
 
+// Load utils
+@use 'sass:color';
+@use 'template/mixins' as mixins;
 
-// Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
-// ---------------------------------------------
+$active-color: #2a76dd;
+
+// Inject theme variables (with some overrides)
+@use 'template/settings' with (
+  $background-color: #fff,
+
+  $main-color: #222,
+  $main-font-size: 42px,
+  $main-font: "'Montserrat', Impact, sans-serif",
+
+  $heading-color: #222,
+  $heading-font: "'Montserrat', Impact, sans-serif",
+  $heading-text-shadow: none,
+  $heading-letter-spacing: -0.03em,
+  $heading-text-transform: uppercase,
+  $heading-font-weight: 600,
+
+  $heading1-size: 2.3em,
+  $heading2-size: 1.7em,
+  $heading3-size: 1.3em,
+  $heading4-size: 1.0em,
+
+  $link-color: $active-color,
+  $link-color-hover: color.scale($active-color, $lightness: 15%),
+  $selection-background-color: color.scale($active-color, $lightness: 25%)
+);
+
+// Inject the theme template
+@use 'template/theme';
 
 // Include theme-specific fonts
 @import url(https://fonts.googleapis.com/css?family=Montserrat:700);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
 
-// Override theme settings (see ../template/settings.scss)
-$backgroundColor: #fff;
-
-$mainColor: #222;
-$headingColor: #222;
-
-$mainFontSize: 42px;
-$mainFont: 'Open Sans', sans-serif;
-$headingFont: 'Montserrat', Impact, sans-serif;
-$headingTextShadow: none;
-$headingLetterSpacing: -0.03em;
-$headingTextTransform: uppercase;
-$headingFontWeight: 600;
-$linkColor: #2a76dd;
-$linkColorHover: lighten( $linkColor, 15% );
-$selectionBackgroundColor: lighten( $linkColor, 25% );
-
-$heading1Size: 2.3em;
-$heading2Size: 1.7em;
-$heading3Size: 1.3em;
-$heading4Size: 1.0em;
-
-section.has-dark-background {
-	&, h1, h2, h3, h4, h5, h6 {
-		color: #fff;
-	}
-}
+// Change text when the background is inverted
+@include mixins.dark-bg-text-color(#fff);
 
 .slide-background {
     filter: grayscale(50%) opacity(20%) blur(0);
@@ -52,8 +55,3 @@ section.has-dark-background {
         filter: grayscale(60%) opacity(40%) blur(0);
     }
 }
-
-
-// Theme template ------------------------------
-@import "../template/theme";
-// ---------------------------------------------

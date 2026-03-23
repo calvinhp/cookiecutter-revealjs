@@ -14,12 +14,19 @@ js/reveal.js:
 	bsdtar --strip-components=1 --exclude .gitignore --exclude LICENSE --exclude README.md --exclude demo.html --exclude index.html -xf master.zip
 	rm master.zip
 	npm install
+	@# Copy built plugins to paths expected by Pandoc's revealjs template
+	@for p in notes search zoom math highlight markdown; do \
+		if [ -f dist/plugin/$$p.js ]; then \
+			mkdir -p plugin/$$p; \
+			cp dist/plugin/$$p.js plugin/$$p/$$p.js; \
+		fi; \
+	done
 
-css/theme/source/$(slide-theme).scss: themes/$(slide-theme).scss
+css/theme/$(slide-theme).scss: themes/$(slide-theme).scss
 	cp "$<" "$@"
 
-dist/theme/$(slide-theme).css: css/theme/source/$(slide-theme).scss
-	npm run build -- css-themes
+dist/theme/$(slide-theme).css: css/theme/$(slide-theme).scss
+	npm run build:styles
 
 start: index.html ## bulid presentation and start server
 	@echo "Starting the local presentation server 🚀"
@@ -28,19 +35,23 @@ start: index.html ## bulid presentation and start server
 clean: ## clean up the working directory
 	rm CONTRIBUTING.md || true
 	rm LICENSE || true
-	rm .npmignore || true
 	rm -rf css/ || true
-	rm gulpfile.js || true
 	rm index.html || true
 	rm -rf examples/ || true
 	rm -rf js/ || true
-	rm -rf lib/ || true
+	rm -rf public/ || true
 	rm package-lock.json || true
 	rm package.json || true
 	rm -rf plugin/ || true
+	rm -rf scripts/ || true
 	rm -rf test/ || true
 	rm -rf node_modules/ || true
 	rm -rf dist/ || true
+	rm -rf react/ || true
+	rm tsconfig.json || true
+	rm tsconfig.node.json || true
+	rm vite.config.ts || true
+	rm vite.config.styles.ts || true
 
 watch: ## Watch for changes and rebuild
 	@echo "♻️ Watching for changes..."

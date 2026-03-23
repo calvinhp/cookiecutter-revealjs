@@ -3,27 +3,11 @@
  * Author: Achim Staebler
  */
 
+// Load utils
+@use 'sass:color';
+@use 'template/mixins' as mixins;
 
-// Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
-// ---------------------------------------------
-
-
-
-// Include theme-specific fonts
-@import url(../../lib/font/league-gothic/league-gothic.css);
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
-
-/**
- * Solarized colors by Ethan Schoonover
- */
-html * {
-	color-profile: sRGB;
-	rendering-intent: auto;
-}
-
-// Solarized colors
+// Solarized colors by Ethan Schoonover
 $base03:    #002b36;
 $base02:    #073642;
 $base01:    #586e75;
@@ -41,19 +25,36 @@ $blue:      #268bd2;
 $cyan:      #2aa198;
 $green:     #859900;
 
-// Override theme settings (see ../template/settings.scss)
-$mainColor: $base1;
-$headingColor: $base2;
-$headingTextShadow: none;
-$backgroundColor: $base03;
-$linkColor: $blue;
-$linkColorHover: lighten( $linkColor, 20% );
-$selectionBackgroundColor: $magenta;
+$active-color: $blue;
 
-$heading1Size: 2.3em;
-$heading2Size: 1.7em;
-$heading3Size: 1.3em;
-$heading4Size: 1.0em;
+// Inject theme variables (with some overrides)
+@use 'template/settings' with (
+  $background-color: $base03,
+
+  $main-color: $base1,
+  $heading-color: $base2,
+  $heading-text-shadow: none,
+
+  $heading1-size: 2.3em,
+  $heading2-size: 1.7em,
+  $heading3-size: 1.3em,
+  $heading4-size: 1.0em,
+
+  $link-color: $active-color,
+  $link-color-hover: color.scale($active-color, $lightness: 20%),
+  $selection-background-color: $magenta
+);
+
+// Inject the theme template
+@use 'template/theme';
+
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
+
+html * {
+  color-profile: sRGB;
+  rendering-intent: auto;
+}
 
 .slide-background {
     filter: grayscale(50%) opacity(20%) blur(2px);
@@ -83,8 +84,3 @@ body:after {
   bottom: -9em;
   left: -7em;
 }
-
-
-// Theme template ------------------------------
-@import "../template/theme";
-// ---------------------------------------------
